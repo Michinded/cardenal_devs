@@ -58,47 +58,38 @@ class _LoginPageState extends State<LoginPage> {
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Column(
                 children: [
-                  TextFormField(
-                    style: const TextStyle(color: Colors.white),
-                    controller: _con.emailController,
-                    decoration: const InputDecoration(
-                      labelText: "Correo electrónico",
-                      labelStyle: TextStyle(color: Colors.white),
-                      enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.white),
-                      ),
-                    ),
-                  ),
+              TextField(
+              controller: _con.emailController,
+              decoration: const InputDecoration(
+              hintText: 'Correo electrónico',
+                filled: true,
+                fillColor: Colors.white,
+              ),
+            ),
                   const SizedBox(height: 10),
-                  TextFormField(
+                  TextField(
                     controller: _con.passwordController,
-                    style: const TextStyle(color: Colors.white),
                     obscureText: !_showPassword,
                     decoration: InputDecoration(
-                      labelText: "Contraseña",
-                      labelStyle:  const TextStyle(color: Colors.white),
-                      enabledBorder:  const OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.white),
-                      ),
-                      suffixIcon: GestureDetector(
-                        onTap: () {
+                      hintText: 'Contraseña',
+                      filled: true,
+                      fillColor: Colors.white,
+                      suffixIcon: IconButton(
+                        icon: Icon(
+                          _showPassword ? Icons.visibility : Icons.visibility_off,
+                        ),
+                        onPressed: () {
                           setState(() {
                             _showPassword = !_showPassword;
                           });
                         },
-                        child: Icon(
-                          _showPassword
-                              ? Icons.visibility
-                              : Icons.visibility_off,
-                          color: Colors.white,
-                        ),
                       ),
                     ),
                   ),
                   const SizedBox(height: 20),
                   ElevatedButton(
                     onPressed: () {
-                      Navigator.pushNamed(context, '/home');
+                      _con.login();
                     },
                     child: Text("Iniciar sesión"),
                   ),
