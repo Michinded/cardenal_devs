@@ -82,7 +82,9 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   SizedBox(height: 20),
                   ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/home');
+                    },
                     child: Text("Iniciar sesión"),
                   ),
                   SizedBox(height: 20),
