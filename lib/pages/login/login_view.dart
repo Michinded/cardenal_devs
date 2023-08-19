@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatefulWidget {
+  const LoginPage({super.key});
+
   @override
-  _LoginPageState createState() => _LoginPageState();
+  State<LoginPage> createState() => _LoginPageState();
 }
 
 class _LoginPageState extends State<LoginPage> {
@@ -11,22 +13,18 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFF0048ad),
+      backgroundColor: const Color(0xFF0048ad),
       body: SingleChildScrollView(
         child: Column(
           children: [
-            SizedBox(height: 80),
-            CircleAvatar(
+            const SizedBox(height: 80),
+            const CircleAvatar(
               radius: 50,
-              backgroundColor: Colors.white,
-              child: Icon(
-                Icons.account_circle,
-                size: 80,
-                color: Color(0xFF0048ad),
-              ),
+              backgroundColor: Colors.transparent,
+              backgroundImage: AssetImage("assets/img/logos/logo_qro_dig.png"), // Ruta de la imagen
             ),
-            SizedBox(height: 20),
-            Text(
+            const SizedBox(height: 20),
+            const Text(
               "¡Bienvenido!",
               style: TextStyle(
                 color: Colors.white,
@@ -34,21 +32,22 @@ class _LoginPageState extends State<LoginPage> {
                 fontWeight: FontWeight.bold,
               ),
             ),
-            SizedBox(height: 10),
-            Text(
+            const SizedBox(height: 10),
+            const Text(
               "Esta es tu app para estudiar",
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 16,
               ),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20),
+              padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Column(
                 children: [
                   TextFormField(
-                    decoration: InputDecoration(
+                    style: const TextStyle(color: Colors.white),
+                    decoration: const InputDecoration(
                       labelText: "Correo electrónico",
                       labelStyle: TextStyle(color: Colors.white),
                       enabledBorder: OutlineInputBorder(
@@ -56,13 +55,14 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                     ),
                   ),
-                  SizedBox(height: 10),
+                  const SizedBox(height: 10),
                   TextFormField(
+                    style: const TextStyle(color: Colors.white),
                     obscureText: !_showPassword,
                     decoration: InputDecoration(
                       labelText: "Contraseña",
-                      labelStyle: TextStyle(color: Colors.white),
-                      enabledBorder: OutlineInputBorder(
+                      labelStyle:  const TextStyle(color: Colors.white),
+                      enabledBorder:  const OutlineInputBorder(
                         borderSide: BorderSide(color: Colors.white),
                       ),
                       suffixIcon: GestureDetector(
@@ -80,15 +80,15 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                     ),
                   ),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   ElevatedButton(
                     onPressed: () {},
                     child: Text("Iniciar sesión"),
                   ),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   TextButton(
                     onPressed: () {},
-                    child: Text("¿No tienes cuenta?"),
+                    child: const Text("¿No tienes cuenta? Regitrarse"),
                   ),
                 ],
               ),
@@ -99,3 +99,4 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 }
+

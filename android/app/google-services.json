@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "32662567958",
+    "project_id": "cardenaldevs",
+    "storage_bucket": "cardenaldevs.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:32662567958:android:fbaf7262994874d8f10937",
+        "android_client_info": {
+          "package_name": "com.cardenaldevs.cardenal_devs"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "32662567958-7goujru4lao36j80mkduh1akelg6qkjt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAYADyan5lGDSi6SSmkMmAKTGifMX7iHCQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "32662567958-7goujru4lao36j80mkduh1akelg6qkjt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
