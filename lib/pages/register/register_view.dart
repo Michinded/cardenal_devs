@@ -25,45 +25,52 @@ class _RegisterPageState extends State<RegisterPage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              CircleAvatar(
+              const CircleAvatar(
                 // Aquí puedes poner la imagen de tu logo, solo es un ejemplo
-                backgroundImage: AssetImage('path/to/your/logo.png'),
+                backgroundImage: AssetImage("assets/img/logos/logo_qro_dig.png"),
                 radius: 50.0,
               ),
-              SizedBox(height: 20.0),
-              Text(
+              const SizedBox(height: 20.0),
+              const Text(
                 'Regístrate',
                 style: TextStyle(
                   fontSize: 24.0,
                   color: Colors.white,
                 ),
               ),
-              Text(
+              const Text(
                 'Esta es tu app para estudiar',
                 style: TextStyle(
                   fontSize: 16.0,
                   color: Colors.white,
                 ),
               ),
-              SizedBox(height: 20.0),
-              TextField(
+              const SizedBox(height: 20.0),
+              const TextField(
                 decoration: InputDecoration(
                   hintText: 'Nombre',
                   filled: true,
                   fillColor: Colors.white,
                 ),
               ),
-              SizedBox(height: 10.0),
-              TextField(
-                decoration: InputDecoration(
+              const SizedBox(height: 10.0),
+               TextField(
+
+                decoration: const InputDecoration(
                   hintText: 'Apellidos',
                   filled: true,
                   fillColor: Colors.white,
                 ),
               ),
-              SizedBox(height: 10.0),
+              const SizedBox(height: 10.0),
               DropdownButtonFormField(
-                hint: Text('Selecciona tu carrera'),
+                decoration: const InputDecoration(
+                  filled: true,
+                  fillColor: Colors.white,
+                  border: OutlineInputBorder(),
+                  hintText: "Selecciona tu carrera",
+                ),
+
                 items: _carreras.map((String value) {
                   return DropdownMenuItem<String>(
                     value: value,
@@ -77,15 +84,15 @@ class _RegisterPageState extends State<RegisterPage> {
                 },
                 value: _selectedCarrera,
               ),
-              SizedBox(height: 10.0),
-              TextField(
+              const SizedBox(height: 10.0),
+              const TextField(
                 decoration: InputDecoration(
                   hintText: 'Ingresa tu generación',
                   filled: true,
                   fillColor: Colors.white,
                 ),
               ),
-              SizedBox(height: 10.0),
+              const SizedBox(height: 10.0),
               TextField(
                 decoration: InputDecoration(
                   hintText: 'Ingresa tu correo y/o matrícula',
