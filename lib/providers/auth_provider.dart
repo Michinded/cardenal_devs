@@ -40,23 +40,15 @@ class AuthProvider{
     return _firebaseAuth.currentUser;
   }
 
-  void _showSnackBar(String message, BuildContext context) {
-    if (context != null) {
-      ScaffoldMessenger.of(context!).showSnackBar(
-        SnackBar(
-          content: Text(
-            message,
-            style: const TextStyle(fontSize: 16, color: Colors.white),
-          ),
-          backgroundColor: const Color(0xFFF78044), // Background color
-          elevation: 8, // Shadow level
-          behavior: SnackBarBehavior.floating,
-          shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
-          ),
-        ),
-      );
-    }
+  // Método para devolver un FirebaseAuth
+  FirebaseAuth getFirebaseAuth(){
+    return _firebaseAuth;
+  }
+
+
+  // Método para cerrar sesión
+  Future<void> logout() async{
+    await _firebaseAuth.signOut();
   }
 
 }
