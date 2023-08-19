@@ -83,7 +83,7 @@ class _LoginPageState extends State<LoginPage> {
                   const SizedBox(height: 20),
                   ElevatedButton(
                     onPressed: () {},
-                    child: Text("Iniciar sesión"),
+                    child: const Text("Iniciar sesión"),
                   ),
                   const SizedBox(height: 20),
                   TextButton(
