@@ -1,11 +1,17 @@
 import 'package:cardenal_devs/pages/login/login_view.dart';
+import 'package:cardenal_devs/pages/test/test_firebase_auth.dart';
 import 'package:cardenal_devs/pages/register/register_view.dart';
 import 'package:cardenal_devs/pages/forgot_password/forgot_passwors_view.dart';
 import 'package:cardenal_devs/pages/panel_principal/panel_principal_view.dart';
 
 import 'package:flutter/material.dart';
+import 'package:firebase_core/firebase_core.dart';
 
-void main() => runApp(MyApp());
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
   @override
