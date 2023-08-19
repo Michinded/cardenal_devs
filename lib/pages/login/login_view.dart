@@ -1,4 +1,6 @@
+import 'package:cardenal_devs/pages/login/login_controller_data.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -9,6 +11,17 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   bool _showPassword = false;
+  LoginController _con = new LoginController();
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    print("INIT STATES");
+    SchedulerBinding.instance.addPostFrameCallback((timeStamp) {
+      print("SCREEN INIT");
+      _con.init(context);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -47,6 +60,7 @@ class _LoginPageState extends State<LoginPage> {
                 children: [
                   TextFormField(
                     style: const TextStyle(color: Colors.white),
+                    controller: _con.emailController,
                     decoration: const InputDecoration(
                       labelText: "Correo electrónico",
                       labelStyle: TextStyle(color: Colors.white),
@@ -57,6 +71,7 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   const SizedBox(height: 10),
                   TextFormField(
+                    controller: _con.passwordController,
                     style: const TextStyle(color: Colors.white),
                     obscureText: !_showPassword,
                     decoration: InputDecoration(
@@ -82,12 +97,16 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   const SizedBox(height: 20),
                   ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      _con.login();
+                    },
                     child: const Text("Iniciar sesión"),
                   ),
                   const SizedBox(height: 20),
                   TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+
+                    },
                     child: const Text("¿No tienes cuenta? Regitrarse"),
                   ),
                 ],
