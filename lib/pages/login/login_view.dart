@@ -12,6 +12,8 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   bool _showPassword = false;
   final LoginController _con = LoginController();
+  static const Color color_primary = Color(0xFF0048ad);
+
   @override
   void initState() {
     // TODO: implement initState
@@ -27,6 +29,17 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFF0048ad),
+      appBar: AppBar(
+        backgroundColor: const Color(0xFF0048ad),
+        elevation: 0,
+        title: const Text('Iniciar sesión'),
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: const Icon(Icons.arrow_back),
+        ),
+      ),
       body: Container(
         decoration: const BoxDecoration(
           image: DecorationImage(
@@ -35,7 +48,7 @@ class _LoginPageState extends State<LoginPage> {
           ),
         ),
         height: MediaQuery.of(context).size.height,
-        
+
         child: SingleChildScrollView(
           child: Column(
             children: [
@@ -49,7 +62,7 @@ class _LoginPageState extends State<LoginPage> {
               const Text(
                 "¡Bienvenido!",
                 style: TextStyle(
-                  color: Colors.white,
+                  color: color_primary,
                   fontSize: 24,
                   fontWeight: FontWeight.bold,
                 ),
@@ -58,7 +71,7 @@ class _LoginPageState extends State<LoginPage> {
               const Text(
                 "Esta es tu app para estudiar",
                 style: TextStyle(
-                  color: Colors.white,
+                  color: color_primary,
                   fontSize: 16,
                 ),
               ),
