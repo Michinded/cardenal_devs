@@ -87,8 +87,17 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   SizedBox(height: 20),
                   TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/register');
+                    },
                     child: Text("¿No tienes cuenta?"),
+                  ),
+                  SizedBox(height: 0),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/forgot_password');
+                    },
+                    child: Text("¿Se te olvido tu contraseña?"),
                   ),
                 ],
               ),
