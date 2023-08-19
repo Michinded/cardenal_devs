@@ -63,7 +63,12 @@ class _RegisterPageState extends State<RegisterPage> {
               ),
               SizedBox(height: 10.0),
               DropdownButtonFormField(
-                hint: Text('Selecciona tu carrera'),
+                decoration: InputDecoration(
+                  fillColor: Colors.white,
+                  filled: true,
+                  border: OutlineInputBorder(),
+                  hintText: 'Selecciona tu carrera',
+                ),
                 items: _carreras.map((String value) {
                   return DropdownMenuItem<String>(
                     value: value,
