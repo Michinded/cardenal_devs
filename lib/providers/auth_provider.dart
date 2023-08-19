@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 
 // Esta clase se encarga de la autenticación de los usuarios a través de Firebase Auth
 
@@ -16,7 +17,14 @@ class AuthProvider{
       return true;
     }catch(error) {
      // print(error); // Imprime el error en la consola de debug
-      errorMessage = error.hashCode as String?;
+      //errorMessage = error.hashCode as String?;
+      // Si el error contiene We have blocked all requests from this device due to unusual activity
+      // se muestra el mensaje de error correspondiente
+      /*if(errorMessage!.contains("We have blocked all requests from this device due to unusual activity")){
+        errorMessage = "Se han realizado demasiados intentos de iniicio, por favor intenta más tarde, reinicia la app o recupera tu contraseña";
+      }
+       */
+      return false;
     }
 
     if(errorMessage != null){
@@ -25,6 +33,30 @@ class AuthProvider{
     }
     return true; // Regresa true en caso de que el usuario exista
 
+  }
+
+  // Método para recuperar el usuario actual
+  User? getCurrentUser(){
+    return _firebaseAuth.currentUser;
+  }
+
+  void _showSnackBar(String message, BuildContext context) {
+    if (context != null) {
+      ScaffoldMessenger.of(context!).showSnackBar(
+        SnackBar(
+          content: Text(
+            message,
+            style: const TextStyle(fontSize: 16, color: Colors.white),
+          ),
+          backgroundColor: const Color(0xFFF78044), // Background color
+          elevation: 8, // Shadow level
+          behavior: SnackBarBehavior.floating,
+          shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
+          ),
+        ),
+      );
+    }
   }
 
 }
