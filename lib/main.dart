@@ -1,6 +1,10 @@
 import 'package:cardenal_devs/pages/login/login_controller.dart';
 import 'package:cardenal_devs/pages/login/login_view.dart';
 import 'package:cardenal_devs/pages/test/test_firebase_auth.dart';
+import 'package:cardenal_devs/pages/register/register_view.dart';
+import 'package:cardenal_devs/pages/forgot_password/forgot_passwors_view.dart';
+import 'package:cardenal_devs/pages/panel_principal/panel_principal_view.dart';
+
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 
@@ -9,15 +13,24 @@ void main() async{
   await Firebase.initializeApp();
   runApp(const MyApp());
 }
+void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
+      title: 'Recuperación Flutter',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
       home: LoginPage(),
+      routes: {
+        '/login': (context) => LoginPage(),  // Ruta para la página de login
+        '/register': (context) => RegisterPage(),  // Ruta para la página de registro
+        '/forgot_password': (context) => RecoveryPage(),  // Ruta para la página de recuperación de contraseña
+        '/home': (context) => MyHomePage(),
+
+      },
     );
   }
 }
