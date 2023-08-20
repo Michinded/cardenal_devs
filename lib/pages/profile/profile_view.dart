@@ -120,7 +120,7 @@ class MenuColumn extends StatelessWidget {
         children: [
           TextButton.icon(
             onPressed: () {
-              Navigator.pushNamed(context, '/uploadPage'); // Reemplaza con la ruta de tu página de subida
+              Navigator.pushNamed(context, '/upload'); // Reemplaza con la ruta de tu página de subida
             },
             icon: Icon(Icons.cloud_upload, color: buttonColor),
             label: Text(
