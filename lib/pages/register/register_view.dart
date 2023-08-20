@@ -1,3 +1,4 @@
+import 'package:cardenal_devs/pages/register/register_controller.dart';
 import 'package:flutter/material.dart';
 
 class RegisterPage extends StatefulWidget {
@@ -9,12 +10,19 @@ class _RegisterPageState extends State<RegisterPage> {
   bool _showPassword = false;
   String? _selectedCarrera;
   static const Color color_primary = Color(0xFF0048ad);
+  final RegisterController _con = RegisterController();
   final List<String> _carreras = [
     'Ingeniería en Sistemas',
     'Ingeniería Civil',
     'Medicina',
     // Agrega las carreras que necesites
   ];
+
+  @override
+  void initState() {
+    super.initState();
+    _con.carrera = _carreras[0]; // Establecer el valor inicial para _selectedCarrera
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -55,7 +63,8 @@ class _RegisterPageState extends State<RegisterPage> {
                   ),
                 ),
                 const SizedBox(height: 20.0),
-                const TextField(
+                 TextField(
+                  controller: _con.nombreController,
                   decoration: InputDecoration(
                     hintText: 'Nombre',
                     filled: true,
@@ -64,6 +73,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 ),
                 const SizedBox(height: 10.0),
                 TextField(
+                  controller: _con.apellidosController,
                   decoration: const InputDecoration(
                     hintText: 'Apellidos',
                     filled: true,
@@ -76,7 +86,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     filled: true,
                     fillColor: Colors.white,
                     border: OutlineInputBorder(),
-                    hintText: "Selecciona tu carrera",
+                    hintText: "Seleccione su carrera",
                   ),
                   items: _carreras.map((String value) {
                     return DropdownMenuItem<String>(
@@ -86,29 +96,32 @@ class _RegisterPageState extends State<RegisterPage> {
                   }).toList(),
                   onChanged: (newValue) {
                     setState(() {
-                      _selectedCarrera = newValue;
+                      _con.carrera = newValue!; // Actualiza el valor en el controlador
                     });
                   },
-                  value: _selectedCarrera,
+                  value: _con.carrera,
                 ),
                 const SizedBox(height: 10.0),
-                const TextField(
-                  decoration: InputDecoration(
-                    hintText: 'Ingresa tu generación',
+                 TextField(
+                  controller: _con.generacionController,
+                  decoration: const InputDecoration(
+                    hintText: 'Ingrese su generación',
                     filled: true,
                     fillColor: Colors.white,
                   ),
                 ),
                 const SizedBox(height: 10.0),
                 TextField(
-                  decoration: InputDecoration(
-                    hintText: 'Ingresa tu correo y/o matrícula',
+                  controller: _con.emailController,
+                  decoration: const InputDecoration(
+                    hintText: 'Ingrese su correo electrónico',
                     filled: true,
                     fillColor: Colors.white,
                   ),
                 ),
                 SizedBox(height: 10.0),
                 TextField(
+                  controller: _con.passwordController,
                   obscureText: !_showPassword,
                   decoration: InputDecoration(
                     hintText: 'Contraseña',
@@ -129,6 +142,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 SizedBox(height: 10.0),
                 TextField(
                   obscureText: !_showPassword,
+                  controller: _con.confirmPasswordController,
                   decoration: InputDecoration(
                     hintText: 'Confirmar contraseña',
                     filled: true,
@@ -149,6 +163,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 ElevatedButton(
                   onPressed: () {
                     // Acción del botón
+                    _con.register();
                   },
                   child: Text('Registrarse'),
                 ),
