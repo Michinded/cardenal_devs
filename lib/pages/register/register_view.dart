@@ -21,6 +21,7 @@ class _RegisterPageState extends State<RegisterPage> {
   @override
   void initState() {
     super.initState();
+    _con.init(context);
     _con.carrera = _carreras[0]; // Establecer el valor inicial para _selectedCarrera
   }
 
@@ -28,6 +29,17 @@ class _RegisterPageState extends State<RegisterPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFF0048ad),
+      appBar: AppBar(
+        backgroundColor: const Color(0xFF0048ad),
+        elevation: 0,
+        title: const Text('Iniciar sesión'),
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: const Icon(Icons.arrow_back),
+        ),
+      ),
       body: Container(
         decoration: const BoxDecoration(
           image: DecorationImage(
@@ -65,7 +77,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 const SizedBox(height: 20.0),
                  TextField(
                   controller: _con.nombreController,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     hintText: 'Nombre',
                     filled: true,
                     fillColor: Colors.white,
@@ -119,7 +131,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     fillColor: Colors.white,
                   ),
                 ),
-                SizedBox(height: 10.0),
+                const SizedBox(height: 10.0),
                 TextField(
                   controller: _con.passwordController,
                   obscureText: !_showPassword,
@@ -139,7 +151,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     ),
                   ),
                 ),
-                SizedBox(height: 10.0),
+                const SizedBox(height: 10.0),
                 TextField(
                   obscureText: !_showPassword,
                   controller: _con.confirmPasswordController,
@@ -159,19 +171,19 @@ class _RegisterPageState extends State<RegisterPage> {
                     ),
                   ),
                 ),
-                SizedBox(height: 20.0),
+                const SizedBox(height: 20.0),
                 ElevatedButton(
                   onPressed: () {
                     // Acción del botón
                     _con.register();
                   },
-                  child: Text('Registrarse'),
+                  child: const Text('Registrarse'),
                 ),
                 TextButton(
                   onPressed: () {
                     Navigator.pushNamed(context, '/login');
                   },
-                  child: Text('¿Ya tienes cuenta?'),
+                  child: const Text('¿Ya tienes cuenta?'),
                 ),
               ],
             ),

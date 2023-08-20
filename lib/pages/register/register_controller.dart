@@ -59,31 +59,61 @@ class RegisterController{
       return;
     }
 
-    if (_password == _confirmPassword) {
-      print("Las contraseñas coinciden");
-      print("Nombre: $_nombre");
-      print("Apellidos: $_apellidos");
-      print("Carrera: $_carrera_end");
-      print("Generación: $_generacion");
-      print("email: $_email");
-      print("password: $_password");
+    if (_generacion.contains(RegExp(r'[a-zA-Z]'))) {
+      _showSnackBar("El año de generación debe ser numérico");
+      return;
+    }
 
-      try {
-        // Se crea el usuario con el email y el password
-        await AuthProvider().getFirebaseAuth().createUserWithEmailAndPassword(email: _email, password: _password);
-        _showSnackBar("Usuario creado correctamente");
-        Navigator.pushNamed(context!, '/login');
-      } catch (error) {
-        // Obtener el código de error y saber que tipo de error es
-        String errorCode = error.toString();
-        if (errorCode.contains("email-already-in-use")) {
-          _showSnackBar("El correo electrónico ya está en uso");
+    if (_generacion.length > 4 || _generacion.length < 4) {
+      _showSnackBar("El año de generación debe tener 4 dígitos");
+      return;
+    }
+
+    if(_generacion.contains(RegExp(r'[0-9]'))){
+      int _generacion_int = int.parse(_generacion);
+      // Validar que el año de generación no sea menor o igual al año actual
+      if (_generacion_int >= DateTime.now().year) {
+        print("Año actual: ${DateTime.now().year}");
+        print("Año de generación: $_generacion_int");
+        _showSnackBar("El año de generación debe ser menor al año actual");
+        return;
+      }
+    }
+    // Retornar si el email no es válido (no contiene @)
+    if( !_email.contains("@")){
+      _showSnackBar("El correo no es válido");
+      return;
+    }
+
+    // Validar que el email termine con .edu.mx
+    if(_email.endsWith(".edu.mx")){
+      if (_password == _confirmPassword) {
+        if (_password.length > 7) {
+          try {
+            // Se crea el usuario con el email y el password
+            await AuthProvider()
+                .getFirebaseAuth()
+                .createUserWithEmailAndPassword(
+                email: _email, password: _password);
+            _showSnackBar("Usuario creado correctamente");
+            Navigator.pushNamed(context!, '/login');
+          } catch (error) {
+            _showSnackBar(
+                "Error al crear el usuario o ya esta en uso el correo, verifique sus datos");
+            return;
+          }
         } else {
-          _showSnackBar("Error al crear el usuario o ya esta en uso el correo, verifique sus datos");
+          _showSnackBar("La contraseña debe tener al menos 8 caracteres");
+          print("La contraseña debe tener al menos 8 caracteres 2");
+          return;
         }
+      } else {
+        _showSnackBar("Las contraseñas no coinciden");
+        return;
       }
     }else{
-      print("Las contraseñas no coinciden");
+      _showSnackBar("El correo debe ser institucional");
+      return;
     }
 
 
