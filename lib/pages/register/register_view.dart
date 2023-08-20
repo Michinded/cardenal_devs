@@ -32,7 +32,7 @@ class _RegisterPageState extends State<RegisterPage> {
       appBar: AppBar(
         backgroundColor: const Color(0xFF0048ad),
         elevation: 0,
-        title: const Text('Iniciar sesión'),
+        title: const Text('Registrarse'),
         leading: IconButton(
           onPressed: () {
             Navigator.pop(context);
