@@ -25,7 +25,7 @@ class _MainMenuState extends State<MainMenu> {
   // Método para verificar si ya hay una sesión iniciada
   Future<void> checkLoggedInStatus() async {
     if (mounted && _authProvider.getCurrentUser() != null) {
-      Navigator.pushReplacementNamed(context, '/home');
+      Navigator.pushReplacementNamed(context, '/profile');
     }
   }
 
