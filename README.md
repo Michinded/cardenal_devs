@@ -23,9 +23,9 @@ Este proyecto fue desarrollado utilizando Flutter, un marco de trabajo de códig
 3. Vincular la cuenta de Firebase siguiendo los pasos en [Firebase CLI](https://firebase.google.com/docs/cli?hl=es&authuser=0#install_the_firebase_cli) y [SDK de Flutter](https://docs.flutter.dev/get-started/install).
 4. Instalar y ejecutar la CLI de FlutterFire siguiendo los pasos:
 
-dart pub global activate flutterfire_cli
-flutterfire configure --project=nombre_del_proyecto
+`dart pub global activate flutterfire_cli`
 
+`flutterfire configure --project=nombre_del_proyecto`
 
 Esto registrará automáticamente tus apps en Firebase y agregará un archivo de configuración `lib/firebase_options.dart` al proyecto de Flutter.
 
