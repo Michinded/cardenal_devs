@@ -1,7 +1,5 @@
 # EduVerseQ - Plataforma Educativa Colaborativa
 
-![EduVerseQ Logo](inserta_la_url_de_la_imagen_del_logo_aquí)
-
 ## Equipo: CardenalDevs
 
 Integrantes:
