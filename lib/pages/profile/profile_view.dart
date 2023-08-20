@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'share/share_view.dart';
 
 class ProfileView extends StatelessWidget {
   @override
@@ -120,7 +121,7 @@ class MenuColumn extends StatelessWidget {
         children: [
           TextButton.icon(
             onPressed: () {
-              Navigator.pushNamed(context, '/uploadPage'); // Reemplaza con la ruta de tu página de subida
+              Navigator.pushNamed(context, '/upload'); // Reemplaza con la ruta de tu página de subida
             },
             icon: Icon(Icons.cloud_upload, color: buttonColor),
             label: Text(
@@ -129,7 +130,7 @@ class MenuColumn extends StatelessWidget {
             ),
           ),
           SizedBox(height: 10.0),
-          _customButton(context, 'Publicaciones', '/publicationsPage'),
+          _customButton(context, 'Publicaciones', '/home'),
           SizedBox(height: 10.0),
           _customButton(context, 'Compartir', '/sharePage'),
           SizedBox(height: 10.0),
@@ -155,7 +156,11 @@ class MenuColumn extends StatelessWidget {
   Widget _customButton(BuildContext context, String label, String routeName) {
     return ElevatedButton(
       onPressed: () {
-        Navigator.pushNamed(context, routeName); // Navegar a la página correspondiente
+        if (label == 'Compartir') {
+          ShareView.showShareDialog(context);
+        } else {
+          Navigator.pushNamed(context, routeName); // Navegar a la página correspondiente
+        }
       },
       style: ElevatedButton.styleFrom(
         primary: buttonColor,
