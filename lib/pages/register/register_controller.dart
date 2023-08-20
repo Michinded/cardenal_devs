@@ -100,8 +100,7 @@ class RegisterController{
                 email: _email, password: _password);
             // Obtiene el usuario actual de AuthProvider
             User ? user = AuthProvider().getCurrentUser();
-            // Se crea un documento en la colección users con el uid del usuario
-
+            // Se crea un documento en la colección users con el uid del usuario y sus datos
             await _firestore.collection('users').doc(user!.uid).set({
               'nombre': _nombre,
               'apellidos': _apellidos,
@@ -111,7 +110,10 @@ class RegisterController{
               'uid': user.uid,
             });
 
+            //Envia un correo de verificacion al usuario
             user.sendEmailVerification();
+
+            // Muestra un mensaje de registro exitoso y redirige a la página de login
             _showSnackBar("Registro exitoso");
             Navigator.pushNamed(context!, '/login');
           } catch (error) {
@@ -121,7 +123,6 @@ class RegisterController{
           }
         } else {
           _showSnackBar("La contraseña debe tener al menos 8 caracteres");
-          print("La contraseña debe tener al menos 8 caracteres 2");
           return;
         }
       } else {
