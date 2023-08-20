@@ -191,7 +191,9 @@ class MenuColumn extends StatelessWidget {
 
           TextButton.icon(
             onPressed: () {
-              Navigator.pushNamed(context, '/deleteAccountPage'); // Reemplaza con la ruta de tu página de eliminación de cuenta
+              if(logout()){
+                Navigator.pushNamed(context, '/main');
+              } // Reemplaza con la ruta de tu página de eliminación de cuenta
             },
             icon: Icon(Icons.dangerous, color: Colors.red),  // Icono que representa peligro
             label: const Text(
