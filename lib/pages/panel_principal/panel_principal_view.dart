@@ -33,9 +33,12 @@ class MyHomePage extends StatelessWidget {
                   Wrap(
                     spacing: 8.0,
                     runSpacing: 8.0,
-                    children: List.generate(10, (index) {
-                      return _MiContentCard(context,"Doc${index + 1}", "Adrian Lino");
-                    }),
+                    children: [
+                      _MiContentCard(context, "La vida es bella 2", "Britany", "assets/img/perfil.jpeg"),
+                      _MiContentCard(context, "Español 3 (Ortografia)", "Miguel Padron", "assets/img/fondo.jpg"),
+                      _MiContentCard(context, "ingles Xl", "Britany Sherlyn", "assets/img/fondo.jpg"),
+                      _MiContentCard(context, "Tarea 4 (Quimica)", "Adrian Lino", "assets/img/fondo.jpg"),
+                    ]
                   ),
                 ],
               ),
@@ -51,7 +54,7 @@ class MyHomePage extends StatelessWidget {
 
 
   //carta de contenidos subidos y calificarlos
-Widget _MiContentCard(BuildContext context,String titulo, String autor) {
+Widget _MiContentCard(BuildContext context, String titulo, String autor, String imageUrl) {
   return Card(
     elevation: 5.0,
     child: Container(
@@ -75,8 +78,11 @@ Widget _MiContentCard(BuildContext context,String titulo, String autor) {
           Container(
             color: Colors.grey[200],
             height: 120,
-            child: Center(
-              child: Text('Contenido del segundo divisor'),
+            child: Image.network(
+              imageUrl,
+              fit: BoxFit.cover,
+              width: double.infinity,  // Asegura que la imagen cubra todo el ancho del contenedor
+              height: double.infinity,  // Asegura que la imagen cubra todo el alto del contenedor
             ),
           ),
           // Tercer 2/5
