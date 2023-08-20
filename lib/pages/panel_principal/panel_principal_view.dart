@@ -11,6 +11,7 @@ class MyHomePage extends StatelessWidget {
       backgroundColor: Colors.blue, // Esto puede ser innecesario ya que tendrás una imagen de fondo
       body: SafeArea(
         child: Stack(
+          fit: StackFit.expand,
           children: [
             // Imagen de fondo
             Positioned.fill(
@@ -34,6 +35,14 @@ class MyHomePage extends StatelessWidget {
                     spacing: 8.0,
                     runSpacing: 8.0,
                     children: [
+                      _MiContentCard(context, "La vida es bella 2", "Britany", "assets/img/la-vida-es-bella.jpg"),
+                      _MiContentCard(context, "Español 3 (Ortografia)", "Miguel Padron", "assets/img/español.webp"),
+                      _MiContentCard(context, "ingles Xl", "Britany Sherlyn", "assets/img/ingles.webp"),
+                      _MiContentCard(context, "Tarea 4 (Quimica)", "Adrian Lino", "assets/img/quimica.webp"),
+                      _MiContentCard(context, "La vida es bella 2", "Britany", "assets/img/la-vida-es-bella.jpg"),
+                      _MiContentCard(context, "Español 3 (Ortografia)", "Miguel Padron", "assets/img/español.webp"),
+                      _MiContentCard(context, "ingles Xl", "Britany Sherlyn", "assets/img/ingles.webp"),
+                      _MiContentCard(context, "Tarea 4 (Quimica)", "Adrian Lino", "assets/img/quimica.webp"),
                       _MiContentCard(context, "La vida es bella 2", "Britany", "assets/img/la-vida-es-bella.jpg"),
                       _MiContentCard(context, "Español 3 (Ortografia)", "Miguel Padron", "assets/img/español.webp"),
                       _MiContentCard(context, "ingles Xl", "Britany Sherlyn", "assets/img/ingles.webp"),
@@ -143,7 +152,7 @@ class ProfileCard extends StatelessWidget {
             InkWell(
               onTap: () {
                 // Navegación a la página de registro usando rutas con nombre
-                Navigator.pushNamed(context, '/profileView');
+                Navigator.pushNamed(context, '/profile');
               },
               child: CircleAvatar(
                 backgroundImage: AssetImage(imagePath),

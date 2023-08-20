@@ -1,6 +1,7 @@
 import 'package:cardenal_devs/pages/profile/profile_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:cardenal_devs/providers/auth_provider.dart';
+import 'share/share_view.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -157,7 +158,7 @@ class MenuColumn extends StatelessWidget {
         children: [
           TextButton.icon(
             onPressed: () {
-              Navigator.pushNamed(context, '/uploadPage'); // Reemplaza con la ruta de tu página de subida
+              Navigator.pushNamed(context, '/upload'); // Reemplaza con la ruta de tu página de subida
             },
             icon: Icon(Icons.cloud_upload, color: buttonColor),
             label: Text(
@@ -166,7 +167,7 @@ class MenuColumn extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 10.0),
-          _customButton(context, 'Publicaciones', '/publicationsPage'),
+          _customButton(context, 'Publicaciones', '/home'),
           const SizedBox(height: 10.0),
           _customButton(context, 'Compartir', '/sharePage'),
           const SizedBox(height: 10.0),
@@ -203,9 +204,13 @@ class MenuColumn extends StatelessWidget {
 
   Widget _customButton(BuildContext context, String label, String routeName) {
     return ElevatedButton(
-        onPressed: () {
+      onPressed: () {
+        if (label == 'Compartir') {
+          ShareView.showShareDialog(context);
+        } else {
           Navigator.pushNamed(context, routeName); // Navegar a la página correspondiente
-        },
+        }
+      },
         style: ElevatedButton.styleFrom(
           foregroundColor: Colors.white, backgroundColor: buttonColor,
           shape: RoundedRectangleBorder(
