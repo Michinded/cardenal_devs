@@ -134,7 +134,7 @@ class MenuColumn extends StatelessWidget {
           SizedBox(height: 10.0),
           _customButton(context, 'Compartir', '/sharePage'),
           SizedBox(height: 10.0),
-          _customButton(context, 'Plagio', '/plagiarismPage'),
+          _customButton(context, 'Plagio', '/plagio'),
           SizedBox(height: 10.0),
           _customButton(context, 'Cerrar Sesión', '/logoutPage'),
           SizedBox(height: 20.0),  // Espacio adicional para separar el botón "Eliminar cuenta"

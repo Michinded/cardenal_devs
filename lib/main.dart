@@ -6,6 +6,7 @@ import 'package:cardenal_devs/pages/panel_principal/panel_principal_view.dart';
 import 'package:cardenal_devs/pages/profile/profile_view.dart';
 import 'package:cardenal_devs/pages/panel_principal/cards/card_view.dart';
 import 'package:cardenal_devs/pages/panel_principal/cards/uploadCards/upload_view.dart';
+import 'package:cardenal_devs/pages/profile/Plagio/plagio_view.dart';
 
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -33,7 +34,7 @@ class MyApp extends StatelessWidget {
         '/profileView': (context) => ProfileView(),
         '/card': (context) => CardView(),
         '/upload': (context) => FormularioView(),
-        //'/plagio': (context) => PlagioView(),
+        '/plagio': (context) => PlagioView(),
       },
     );
   }
