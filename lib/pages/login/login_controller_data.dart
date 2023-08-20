@@ -47,7 +47,7 @@ class LoginController {
 
         if (user!.emailVerified) {
           _showSnackBar("Bienvenido: ${user.email!}");
-          Navigator.pushNamed(context!, '/home');
+          Navigator.pushNamed(context!, '/profile');
         } else {
           _showSnackBar("Por favor verifica tu correo electrónico, te hemos enviado un correo de verificación");
         }
@@ -58,7 +58,6 @@ class LoginController {
       // Obtener el código de error y saber que tipo de error es
       //String errorCode = error.toString();
       _showSnackBar("Error al iniciar sesión, verifique sus datos");
-      print(error);
     }
 
   }

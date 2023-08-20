@@ -1,4 +1,6 @@
 import 'package:cardenal_devs/pages/login/login_view.dart';
+import 'package:cardenal_devs/pages/menu/main_menu.dart';
+import 'package:cardenal_devs/pages/profile/profile_view.dart';
 import 'package:cardenal_devs/pages/test/test_firebase_auth.dart';
 import 'package:cardenal_devs/pages/register/register_view.dart';
 import 'package:cardenal_devs/pages/forgot_password/forgot_passwors_view.dart';
@@ -20,6 +22,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false, // Elimina la etiqueta de debug
       title: 'Recuperación Flutter',
       theme: ThemeData(
         primarySwatch: Colors.blue,
@@ -34,6 +37,9 @@ class MyApp extends StatelessWidget {
         '/card': (context) => CardView(),
         '/upload': (context) => FormularioView(),
         //'/plagio': (context) => PlagioView(),
+        '/main': (context) => MainMenu(),
+        '/profile': (context) => ProfilePage(),
+
       },
     );
   }

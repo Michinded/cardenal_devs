@@ -113,21 +113,21 @@ class _LoginPageState extends State<LoginPage> {
                       onPressed: () {
                         _con.login();
                       },
-                      child: Text("Iniciar sesión"),
+                      child: const Text("Iniciar sesión"),
                     ),
                     const SizedBox(height: 20),
                     TextButton(
                       onPressed: () {
                         Navigator.pushNamed(context, '/register');
                       },
-                      child: Text("¿No tienes cuenta?"),
+                      child: const Text("¿No tienes cuenta?"),
                     ),
-                    SizedBox(height: 0),
+                    const SizedBox(height: 0),
                     TextButton(
                       onPressed: () {
                         Navigator.pushNamed(context, '/forgot_password');
                       },
-                      child: Text("¿Se te olvidó tu contraseña?"),
+                      child: const Text("¿Se te olvidó tu contraseña?"),
                     ),
                   ],
                 ),
