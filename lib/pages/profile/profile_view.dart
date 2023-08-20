@@ -28,78 +28,87 @@ class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
     var hasNotch = MediaQuery.of(context).padding.top > 24.0;
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Perfil'),
-      ),
-      body: SafeArea(
-        child: Stack(
-          fit: StackFit.expand,
-          children: [
-            // Imagen de fondo
-            Positioned.fill(
-              child: Image.asset(
-                'assets/img/background_app.jpg',  // Reemplaza con la ruta de tu imagen
-                fit: BoxFit.cover,
+    return WillPopScope(
+      onWillPop: () async {
+        // Evitar el comportamiento del botón de retroceso
+        return false;
+      },
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text('Perfil'),
+          //Quitar el botón de retroceso
+          automaticallyImplyLeading: false,
+        ),
+        body: SafeArea(
+          child: Stack(
+            fit: StackFit.expand,
+            children: [
+              // Imagen de fondo
+              Positioned.fill(
+                child: Image.asset(
+                  'assets/img/background_app.jpg',  // Ruta de la imagen de fondo
+                  fit: BoxFit.cover,
+                ),
               ),
-            ),
 
-            // Contenido de la página sobre la imagen de fondo
-            SingleChildScrollView(
-              child: Column(
-                children: [
-                  if (hasNotch)
+              // Contenido de la página sobre la imagen de fondo
+              SingleChildScrollView(
+                child: Column(
+                  children: [
+                    if (hasNotch)
+                      const SizedBox(
+                        height: 24.0,
+                      ),
+                    userData != null
+                        ? Column(
+                      children: [
+                        const CircleAvatar(
+                          radius: 50.0,
+                          backgroundImage: AssetImage('assets/img/logos/logo_qro_dig.png'),
+                        ),
+                        const SizedBox(
+                          height: 16.0,
+                        ),
+                        Text(
+                          userData!['nombre']+ ' ' + userData!['apellidos'],
+                          style: const TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 20.0,
+                          ),
+                        ),
+                        Text(
+                          userData!['carrera'],
+                          style: TextStyle(
+                            fontSize: 16.0,
+                            color: Colors.grey[600],
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 16.0,
+                        ),
+                        InfoTable( userData!['email'].toString(), userData!['generacion'].toString()),
+                      ],
+                    )
+                        : const Center(
+                      child: CircularProgressIndicator(),
+                    ),
                     const SizedBox(
                       height: 24.0,
                     ),
-                  userData != null
-                      ? Column(
-                    children: [
-                      const CircleAvatar(
-                        radius: 50.0,
-                        backgroundImage: AssetImage('assets/img/logos/logo_qro_dig.png'),
-                      ),
-                      const SizedBox(
-                        height: 16.0,
-                      ),
-                      Text(
-                        userData!['nombre']+ ' ' + userData!['apellidos'],
-                        style: const TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 20.0,
-                        ),
-                      ),
-                      Text(
-                        userData!['carrera'],
-                        style: TextStyle(
-                          fontSize: 16.0,
-                          color: Colors.grey[600],
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 16.0,
-                      ),
-                      InfoTable( userData!['email'].toString(), userData!['generacion'].toString()),
-                    ],
-                  )
-                      : const Center(
-                    child: CircularProgressIndicator(),
-                  ),
-                  const SizedBox(
-                    height: 24.0,
-                  ),
-                  // Añade aquí otros elementos de tu InfoTable si lo deseas
-                  const SizedBox(
-                    height: 24.0,
-                  ),
-                  MenuColumn(),
-                ],
+                    // Añade aquí otros elementos de tu InfoTable si lo deseas
+                    const SizedBox(
+                      height: 24.0,
+                    ),
+                    MenuColumn(),
+                  ],
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
+
   }
 }
 
@@ -217,5 +226,3 @@ class MenuColumn extends StatelessWidget {
     }
   }
 }
-
-
