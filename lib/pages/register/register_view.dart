@@ -39,7 +39,13 @@ class _RegisterPageState extends State<RegisterPage> {
                   backgroundImage: AssetImage("assets/img/logos/logo_qro_dig.png"),
                   radius: 50.0,
                 ),
-                  
+                const SizedBox(height: 20.0),
+                const Text(
+                  'Regístrate',
+                  style: TextStyle(
+                    fontSize: 24.0,
+                    color: color_primary,
+                  ),
                 ),
                 const Text(
                   'Esta es tu app para estudiar',
@@ -139,12 +145,12 @@ class _RegisterPageState extends State<RegisterPage> {
                     ),
                   ),
                 ),
-                const SizedBox(height: 20.0),
-                const Text(
-                  'Regístrate',
-                  style: TextStyle(
-                    fontSize: 24.0,
-                    color: color_primary,
+                SizedBox(height: 20.0),
+                ElevatedButton(
+                  onPressed: () {
+                    // Acción del botón
+                  },
+                  child: Text('Registrarse'),
                 ),
                 TextButton(
                   onPressed: () {

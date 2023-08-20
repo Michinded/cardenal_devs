@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:flutter/scheduler.dart';
 
 
 
@@ -33,7 +34,7 @@ class MyHomePage extends StatelessWidget {
                     spacing: 8.0,
                     runSpacing: 8.0,
                     children: List.generate(10, (index) {
-                      return _MiContentCard("Doc${index + 1}", "Adrian Lino");
+                      return _MiContentCard(context,"Doc${index + 1}", "Adrian Lino");
                     }),
                   ),
                 ],
@@ -50,40 +51,42 @@ class MyHomePage extends StatelessWidget {
 
 
   //carta de contenidos subidos y calificarlos
-  Widget _MiContentCard(String titulo, String autor) {
-
-
-    return Card(
-      elevation: 5.0,
-      child: Container(
-        width: 300, // Define el ancho que desees para la carta
-        height: 300, // Define el alto que desees para la carta
-        child: Column(
-          children: [
-            // Primer 1/5
-            Container(
-              color: Color(0xFF102C44),  // Cambio de color aquí
-              height: 60, // 1/5 de 300 = 60
-              child: Center(
-                child: CustomRatingBar(
-                  onRatingUpdate: (rating) {
-                    print(rating);
-                  },
-                ),
+Widget _MiContentCard(BuildContext context,String titulo, String autor) {
+  return Card(
+    elevation: 5.0,
+    child: Container(
+      width: 300,
+      height: 300,
+      child: Column(
+        children: [
+          // Primer 1/5
+          Container(
+            color: Color(0xFF102C44),
+            height: 60,
+            child: Center(
+              child: CustomRatingBar(
+                onRatingUpdate: (rating) {
+                  print(rating);
+                },
               ),
             ),
-            // Segundo 2/5
-            Container(
-              color: Colors.grey[200],
-              height: 120, // 2/5 de 300 = 120
-              child: Center(
-                child: Text('Contenido del segundo divisor'),
-              ),
+          ),
+          // Segundo 2/5
+          Container(
+            color: Colors.grey[200],
+            height: 120,
+            child: Center(
+              child: Text('Contenido del segundo divisor'),
             ),
-            // Tercer 2/5
-            Container(
-              color: Color(0xFF102C44),  // Cambio de color aquí
-              height: 120, // 2/5 de 300 = 120
+          ),
+          // Tercer 2/5
+          InkWell(
+            onTap: () {
+              Navigator.pushNamed(context, '/card'); // Reemplaza '/paginaEspecial' con la ruta de tu página
+            },
+            child: Container(
+              color: Color(0xFF102C44),
+              height: 120,
               child: Center(
                 child: ArticleDetails(
                   title: titulo,
@@ -92,12 +95,14 @@ class MyHomePage extends StatelessWidget {
                 ),
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
-    );
+    ),
+  );
+}
 
-  }
+
 
 
 // Seccion de seleccion de perfil
@@ -110,22 +115,40 @@ class ProfileCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       child: Container(
-
         height: 60.0,
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.end,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            CircleAvatar(
-              backgroundImage: AssetImage(imagePath),
-              radius: 25.0, // El radio se define para que el círculo tenga un tamaño de 50 (diámetro)
+            // Texto en el centro
+            Expanded(
+              child: Center(
+                child: Text(
+                  "EduVerseQ",
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: Color(0xFF003D8F),
+                    fontSize: 25,
+                  ),
+                ),
+              ),
             ),
-            SizedBox(width: 10.0), // Espacio entre el círculo y el borde derecho de la carta
+            // Imagen de perfil como botón
+            InkWell(
+              onTap: () {
+                // Navegación a la página de registro usando rutas con nombre
+                Navigator.pushNamed(context, '/profileView');
+              },
+              child: CircleAvatar(
+                backgroundImage: AssetImage(imagePath),
+                radius: 25.0,
+              ),
+            ),
+            SizedBox(width: 10.0),
           ],
         ),
       ),
     );
   }
-
 }
 
 

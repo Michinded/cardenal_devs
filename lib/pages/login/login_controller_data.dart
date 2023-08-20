@@ -43,7 +43,7 @@ class LoginController {
 
         User ? user = AuthProvider().getCurrentUser();
 
-        //user!.sendEmailVerification();
+        user!.sendEmailVerification();
 
         if (user!.emailVerified) {
           _showSnackBar("Bienvenido: ${user.email!}");
