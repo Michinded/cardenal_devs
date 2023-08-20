@@ -1,5 +1,7 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:cardenal_devs/providers/auth_provider.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class RegisterController{
   BuildContext? context;
@@ -11,6 +13,9 @@ class RegisterController{
   TextEditingController apellidosController = TextEditingController();
   TextEditingController carreraController = TextEditingController();
   TextEditingController generacionController = TextEditingController();
+
+  //Instancia una conexion a fire store
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
   String _selectedCarrera = ''; // Valor inicial del DropdownButtonFormField
 
@@ -73,8 +78,6 @@ class RegisterController{
       int _generacion_int = int.parse(_generacion);
       // Validar que el año de generación no sea menor o igual al año actual
       if (_generacion_int >= DateTime.now().year) {
-        print("Año actual: ${DateTime.now().year}");
-        print("Año de generación: $_generacion_int");
         _showSnackBar("El año de generación debe ser menor al año actual");
         return;
       }
@@ -95,7 +98,21 @@ class RegisterController{
                 .getFirebaseAuth()
                 .createUserWithEmailAndPassword(
                 email: _email, password: _password);
-            _showSnackBar("Usuario creado correctamente");
+            // Obtiene el usuario actual de AuthProvider
+            User ? user = AuthProvider().getCurrentUser();
+            // Se crea un documento en la colección users con el uid del usuario
+
+            await _firestore.collection('users').doc(user!.uid).set({
+              'nombre': _nombre,
+              'apellidos': _apellidos,
+              'carrera': _carrera_end,
+              'generacion': _generacion,
+              'email': _email,
+              'uid': user.uid,
+            });
+
+            user.sendEmailVerification();
+            _showSnackBar("Registro exitoso");
             Navigator.pushNamed(context!, '/login');
           } catch (error) {
             _showSnackBar(
