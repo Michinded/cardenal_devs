@@ -170,9 +170,10 @@ class MenuColumn extends StatelessWidget {
           _customButton(context, 'Publicaciones', '/home'),
           const SizedBox(height: 10.0),
           _customButton(context, 'Compartir', '/sharePage'),
-          const SizedBox(height: 10.0),
-          _customButton(context, 'Plagio', '/plagiarismPage'),
-          const SizedBox(height: 10.0),
+
+          SizedBox(height: 10.0),
+          _customButton(context, 'Plagio', '/plagio'),
+          SizedBox(height: 10.0),
           //_customButton(context, 'Cerrar Sesión', '/logoutPage'),
           TextButton.icon(
             onPressed: () {
@@ -187,6 +188,7 @@ class MenuColumn extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 20.0),  // Espacio adicional para separar el botón "Eliminar cuenta"
+
           TextButton.icon(
             onPressed: () {
               Navigator.pushNamed(context, '/deleteAccountPage'); // Reemplaza con la ruta de tu página de eliminación de cuenta
