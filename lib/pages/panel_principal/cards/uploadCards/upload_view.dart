@@ -1,6 +1,31 @@
 import 'package:flutter/material.dart';
+import 'package:file_picker/file_picker.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 class FormularioView extends StatelessWidget {
+  Future<void> _requestPermission() async {
+    var status = await Permission.storage.status;
+    if (!status.isGranted) {
+      await Permission.storage.request();
+    }
+  }
+
+  Future<void> _selectFile() async {
+    await _requestPermission();
+    FilePickerResult? result = await FilePicker.platform.pickFiles();
+
+    if(result != null) {
+      PlatformFile file = result.files.first;
+      print(file.name);
+      print(file.bytes);
+      print(file.size);
+      print(file.extension);
+      print(file.path);
+    } else {
+      // User canceled the file picker
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,7 +48,7 @@ class FormularioView extends StatelessWidget {
                 children: [
                   SizedBox(height: 20.0),
                   Image.asset('assets/img/logos/contigo.png', width: 200,
-                    fit: BoxFit.cover),  // Reemplaza con la ruta de tu imagen superior
+                      fit: BoxFit.cover),  // Reemplaza con la ruta de tu imagen superior
                   SizedBox(height: 20.0),
                   Padding(
                     padding: const EdgeInsets.all(16.0),
@@ -183,7 +208,7 @@ class FormularioView extends StatelessWidget {
                         SizedBox(height: 16.0),
                         ElevatedButton.icon(
                           onPressed: () {
-                            // Lógica para abrir selector de archivos
+                            _selectFile();
                           },
                           icon: Icon(Icons.attach_file, color: Colors.white),  // Ícono de color blanco
                           label: Text('Seleccionar un archivo', style: TextStyle(color: Colors.white)),  // Texto de color blanco
