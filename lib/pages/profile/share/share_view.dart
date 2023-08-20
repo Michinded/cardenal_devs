@@ -7,9 +7,7 @@ class ShareView {
     int _selectedValue = 0;  // 0 for none, 1 for public, 2 for private
 
     void _copyLink() {
-      String randomLink = 'https://example.com/' + Random().nextInt(1000000).toString();
-      // Here you can use the Clipboard widget to copy the link to the clipboard
-      // For this example, we are just generating the link
+      String randomLink = 'https://EduVerseQ.com/' + Random().nextInt(1000000).toString();
 
       final snackBar = SnackBar(
         content: Text(

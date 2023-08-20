@@ -33,6 +33,7 @@ class MyApp extends StatelessWidget {
         '/profileView': (context) => ProfileView(),
         '/card': (context) => CardView(),
         '/upload': (context) => FormularioView(),
+        //'/plagio': (context) => PlagioView(),
       },
     );
   }

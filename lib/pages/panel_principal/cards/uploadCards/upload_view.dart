@@ -223,7 +223,7 @@ class FormularioView extends StatelessWidget {
                         SizedBox(height: 16.0),
                         ElevatedButton.icon(
                           onPressed: () {
-                            // Lógica para abrir selector de imágenes
+                            _selectFile();
                           },
                           icon: Icon(Icons.image, color: Colors.white),  // Ícono de color blanco
                           label: Text('Seleccionar imágenes de muestra', style: TextStyle(color: Colors.white)),  // Texto de color blanco
@@ -238,7 +238,15 @@ class FormularioView extends StatelessWidget {
                         SizedBox(height: 20.0),
                         ElevatedButton(
                           onPressed: () {
-                            Navigator.pushNamed(context, '/publicaciones');
+                            Navigator.pushNamed(context, '/home');
+                            ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  content: Text('Se ha subido correctamente la publicación', style: TextStyle(fontSize: 18.0)),
+                                  behavior: SnackBarBehavior.floating,
+                                  elevation: 8.0,
+                                  margin: EdgeInsets.only(top: 10.0, left: 10.0, right: 10.0),
+                                )
+                            );
                           },
                           child: Text('Subir publicación', style: TextStyle(color: Colors.black)),  // Texto de color negro
                           style: ElevatedButton.styleFrom(
